@@ -1,0 +1,64 @@
+.header {
+    background-color: #04162b;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 12px 12px 15px rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-button-container {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header a {
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #ced4da;
+    border-radius: 8px;
+    padding: 7px;
+    margin-left: 14px;
+    margin: 8px;
+}
+
+.header i {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.back-button {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.back-button i {
+    margin-right: 5px;
+}
+
+.up-button {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hello-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

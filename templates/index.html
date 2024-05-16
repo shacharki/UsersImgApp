@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Users App</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='header.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    </head>
+<body>
+    <header class="header">
+        <div class="back-button-container">
+            {% if current_user.is_authenticated %}
+            <a class="up-button" href="{{ url_for('logout') }}"><i class="fas fa-arrow-left"></i>Logout</a>
+                    <div class="hello-title"><h2>Hello {{current_user.username}}</h2></div>
+        {% else %}
+            <a class="up-button" href="{{ url_for('login') }}"><i class="fas fa-arrow-left"></i>Login</a>
+        {% endif %}
+        </div>
+        <div class="title-container">
+            <h2>Users App</h2>
+        </div>
+    </header>
+
+    <!-- <div class="container">
+        {% for movie in movies %}
+            <a href="{{ url_for('movie_details', movie_id=movie.id) }}">
+                <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" style="width: 150px; height: auto;">
+            </a>
+        {% endfor %}
+    </div> -->
+
+
+
+
+   
+    <div class="container">
+        {% if current_user.is_authenticated %}
+       
+
+        <div class="user-info">
+        <!-- <h2>user details:</h2> -->
+            <p><strong>name:</strong> {{ current_user.username }}</p>
+            <p><strong>email:</strong> {{ current_user.email }}</p>
+    </div>
+
+        <div class="movie-details">
+            <img src="https://bucketusersapp.s3.amazonaws.com/user.jpg" alt="image connect" style="width: 250px; height: auto;">
+        </div>
+   
+        {% else %}
+        <p>You need to <a href="{{ url_for('login') }}">log in</a> to see the image.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
+</div>
