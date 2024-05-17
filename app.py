@@ -5,6 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, NumberRange
+import boto3
 
 
 app = Flask(__name__)
@@ -38,10 +39,33 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
+# Function to generate presigned URL for the private image
+def generate_presigned_url(bucket_name, key):
+    url = s3.generate_presigned_url(
+        'get_object',
+        Params={'Bucket': bucket_name, 'Key': key},
+        ExpiresIn=3600  
+    )
+    return url
+
+s3 = boto3.client('s3', region_name='us-east-1') 
+imgBackground = generate_presigned_url('bucketusersapp', 'usersBackground.jpg')
+imgUser = generate_presigned_url('bucketusersapp', 'user.jpg')
+# imgBackground_url = s3.generate_presigned_url('get_object',
+#                                           Params={'Bucket': 'bucketusersapp',
+#                                                  'Key': 'usersBackground.jpg'})
+# imgUser_url = s3.generate_presigned_url('get_object',
+#                                           Params={'Bucket': 'bucketusersapp',
+#                                                  'Key': 'user.jpg'})
+
+
 # Routes
 @app.route('/')
 def index():
-    return render_template('index.html')
+
+    print('3333',imgBackground)
+    print('4444',imgUser)
+    return render_template('index.html',imgBackground=imgBackground,imgUser=imgUser)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -68,7 +92,7 @@ def register():
         flash('Registration successful! You can now log in.', 'success')
         return redirect(url_for('login'))
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form,imgBackground=imgBackground)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -86,8 +110,7 @@ def login():
                 flash('Login failed. Incorrect password.', 'danger')
         else:
             flash('Login failed. User does not exist.', 'danger')
-    return render_template('login.html', form=form)
-
+    return render_template('login.html', form=form,imgBackground=imgBackground)
 
 @app.route('/logout')
 @login_required

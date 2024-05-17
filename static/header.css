@@ -61,4 +61,17 @@
     align-items: center;
 }
 
+.body-register {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* Make the background image fixed */
+    min-height: 100vh;
+    background-color: #bed0ca;
+    background-image: url('https://bucketusersapp.s3.amazonaws.com/usersBackground.jpg');
+} 
+
 
