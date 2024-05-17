@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('https://bucketusersapp.s3.amazonaws.com/usersBackground.jpg');
+    /* background-image: url('https://bucketusersapp.s3.amazonaws.com/usersBackground.jpg'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -28,9 +28,9 @@ div {
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 80%;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    max-width: 70%;
     background-color: #ced4da; 
     border-radius: 10px; 
     margin-bottom: 20%;
@@ -83,7 +83,7 @@ a:hover {
 }
 
 .user-info {
-    width: 40%;
+    width: 140%;
     margin-top: 20px;
 }
 

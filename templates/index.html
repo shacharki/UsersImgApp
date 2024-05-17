@@ -43,7 +43,7 @@
         <!-- <h2>user details:</h2> -->
             <p><strong>name:</strong> {{ current_user.username }}</p>
             <p><strong>email:</strong> {{ current_user.email }}</p>
-    </div>
+        </div>
 
         <div class="movie-details">
             <img src="{{ imgUser }}" alt="image connect" style="width: 250px; height: auto;">
@@ -52,6 +52,17 @@
         {% else %}
         <p>You need to <a href="{{ url_for('login') }}">log in</a> to see the image.</p>
         {% endif %}
+          <div class="container">
+        {% for user in users %}
+        {% if current_user.id != user.id %}
+        <div class="user-info">
+            <!-- <h2>user details:</h2> -->
+                <p><strong>name:</strong> {{ user.username }}</p>
+                <p><strong>email:</strong> {{ user.email }}</p>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

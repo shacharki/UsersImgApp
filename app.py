@@ -3,8 +3,8 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, NumberRange
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Email
 import boto3
 
 
@@ -31,7 +31,7 @@ def load_user(user_id):
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()]) 
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
@@ -58,14 +58,12 @@ imgUser = generate_presigned_url('bucketusersapp', 'user.jpg')
 #                                           Params={'Bucket': 'bucketusersapp',
 #                                                  'Key': 'user.jpg'})
 
-
+print(User())
 # Routes
 @app.route('/')
 def index():
-
-    print('3333',imgBackground)
-    print('4444',imgUser)
-    return render_template('index.html',imgBackground=imgBackground,imgUser=imgUser)
+    users = User.query.all()
+    return render_template('index.html',imgBackground=imgBackground,imgUser=imgUser,users=users)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -84,11 +82,9 @@ def register():
         if existing_email:
             flash('Email already exists. Please choose a different email.', 'danger')
             return redirect(url_for('register'))
-
         new_user = User(username=username, password=password, email=email)
         db.session.add(new_user)
         db.session.commit()
-
         flash('Registration successful! You can now log in.', 'success')
         return redirect(url_for('login'))
 

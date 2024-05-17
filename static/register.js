@@ -24,7 +24,6 @@ $(document).ready(function() {
         
         $('#register-form')[0].submit();
         
-        showSuccessMessage();
     });
 
     $('#username, #password, #confirm_password').on('input', function() {
@@ -43,10 +42,4 @@ $(document).ready(function() {
         $('#error-message').text(message).show();
     }
 
-    function showSuccessMessage() {
-            alert("Registration successful! You can now log in.");
-            setTimeout(function() {
-                window.location.href = "/login"; 
-            }, 50000);
-    }
 });

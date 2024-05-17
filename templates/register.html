@@ -1,3 +1,5 @@
+<!-- register.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +24,25 @@
         <div class="container-login">
             {% block content %}
             <h1>Register</h1>
-            {% if form.errors %}
+            <!-- {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
                     {% for error in form.errors %}
                         {{ error }}
                     {% endfor %}
                 </div>
+            {% endif %} -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
             {% endif %}
+        {% endwith %}
             <form id="register-form" method="POST" action="{{ url_for('register') }}">
                 {{ form.csrf_token }}
                 <div class="form-group">
@@ -36,28 +50,21 @@
                     <input type="text" class="form-control" name="username" id="username" required autofocus>
                 </div>
                 <div class="form-group">
-                    <label for="email"><i class="fas fa-user"></i> Email:</label>
-                    <input type="text" class="form-control" name="email" id="email" required autofocus>
+                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                    <input type="email" class="form-control" name="email" id="email" required autofocus>
+                    <!-- {% for error in form.email.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %} -->
                 </div>
                 <div class="form-group">
                     <label for="password"><i class="fas fa-lock"></i> Password:</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" name="password" id="password" required>
-                        <div class="input-group-append">
-                            <span class="input-group-text toggle-password" id="toggle-password"><i class="fas fa-eye"></i></span>
-                        </div>
-                    </div>
+                    <input type="password" class="form-control" name="password" id="password" required>
                 </div>
                 <div class="form-group">
                     <label for="confirm_password"><i class="fas fa-lock"></i> Confirm Password:</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" required>
-                        <div class="input-group-append">
-                            <span class="input-group-text toggle-password" id="toggle-confirm-password"><i class="fas fa-eye"></i></span>
-                        </div>
-                    </div>
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" required>
                 </div>
-                <div id="error-message" class="alert alert-danger" style="display: none;"></div> <!-- Error message container -->
+                <div id="error-message" class="alert alert-danger" style="display: none;"></div>
                 <div id="success-alert" class="alert alert-success" style="display: none;"></div>
                 <button type="submit" class="btn btn-primary btn-block" id="register-button" disabled><i class="fas fa-user-plus"></i> Register</button>
             </form>
