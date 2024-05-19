@@ -26,16 +26,21 @@
     <div class="container">
         {% if current_user.is_authenticated %}
         <div class="user-info">
-        <p><strong>User logged in:</strong></p>
+            <p><strong>User logged in:</strong></p>
             <p><strong>name:</strong> {{ current_user.username }}</p>
             <p><strong>email:</strong> {{ current_user.email }}</p>
             <div class="image-connect">
-                <img src="{{ imgUser }}" alt="image connect" style="width: 250px; height: auto;">
+                <img src="{{ imgUser }}" alt="image connect" style="width: 180px; ">
             </div>
+        </div>
+
         {% else %}
-        <p>You need to <a href="{{ url_for('login') }}">log in</a> to see the image.</p>
+        <div class="user-info">
+            <p>You need to <a href="{{ url_for('login') }}">log in</a> to see the image.</p>
+        </div>
         {% endif %}
             <div class="container">
+                <div class="users-info">
                 {% if current_user.is_authenticated %}
                     <p><strong>Other users:</strong></p>
                 {% else %}
@@ -43,18 +48,19 @@
                 {% endif %}    
                 {% for user in users %}
                 {% if current_user.id != user.id %}
-                    <div class="user-info">
+                    <div class="user">
                         <p><strong>name:</strong> {{ user.username }}</p>
                         <p><strong>email:</strong> {{ user.email }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
+                </div>
             </div>
-        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
 </div>

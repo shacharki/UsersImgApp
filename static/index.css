@@ -7,12 +7,6 @@ body {
     min-height: 100vh;
 }
 
-h1 {
-    margin: 0;
-    text-align: center; 
-    color: #2a7876;
-}
-
 h2 {
     margin: 0;
     text-align: center; 
@@ -22,14 +16,14 @@ h2 {
 div {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    column-gap: 25px;
     margin-top: 30px;
 }
 
 .container {
-    /* display: flex; */
-    /* justify-content: space-between; */
-    max-width: 70%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 55%;
     background-color: #ced4da; 
     border-radius: 10px; 
     margin-bottom: 20%;
@@ -45,7 +39,7 @@ div {
     border-radius: 8px;
     box-shadow: 0 15px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    margin-bottom: 20px; 
+    margin-bottom: 10px; 
 }
 
 img:hover {
@@ -56,7 +50,7 @@ a {
     color: #0e2424;
     text-decoration: none;
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 a:hover {
@@ -77,13 +71,24 @@ a:hover {
 }
 
 .image-connect {
-    width: 40%;
-    left: 50px;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .user-info {
-    width: 140%;
-    margin-top: 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.user {
+    width: 100%;
+}
+
+.users-info {
+    margin: 20px 0px 30px 20px;
 }
 
 
