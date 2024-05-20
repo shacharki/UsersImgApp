@@ -51,6 +51,8 @@ def generate_presigned_url(bucket_name, key):
 s3 = boto3.client('s3', region_name='us-east-1') 
 imgBackground = generate_presigned_url('bucketusersapp', 'usersBackground.jpg')
 imgUser = generate_presigned_url('bucketusersapp', 'user.jpg')
+
+#public image
 # imgBackground_url = s3.generate_presigned_url('get_object',
 #                                           Params={'Bucket': 'bucketusersapp',
 #                                                  'Key': 'usersBackground.jpg'})
@@ -58,7 +60,6 @@ imgUser = generate_presigned_url('bucketusersapp', 'user.jpg')
 #                                           Params={'Bucket': 'bucketusersapp',
 #                                                  'Key': 'user.jpg'})
 
-print(User())
 # Routes
 @app.route('/')
 def index():
