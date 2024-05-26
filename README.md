@@ -35,6 +35,10 @@ docker run -d -p 5000:5000 usersapp
 * Update the Flask app to use the new S3 bucket name.
 * (You can upload an image with public access by creating a public S3 bucket and using the code in the comments in app.py).
 
+<img width="1170" alt="image_private" src="https:https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/image_private.png">
+### If you try using the url of the image you will receive this error:
+<img width="1170" alt="user_image_private" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/user%20image%20private.png">
+
 ## Cloud Computing Setup
 ### 5. Create an EC2 Instance:
 * Launch an EC2 instance.
@@ -55,6 +59,8 @@ docker run -d -p 5000:5000 usersapp
 ### 6. Deploy the Application on EC2:
 * Follow steps 1-2 above to clone the repository and build the Docker image on the EC2 instance.
 * Use the Public IP for the EC2 instance to access the application.
+### app run on ec2
+<img width="1170" alt="app_ru_ec2" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/app%20run%20on%20ec2.png">
 
 ### 7. Create an IAM Role:
 * Create a new IAM role for EC2 with the `AmazonS3FullAccess` policy attached.
@@ -63,6 +69,8 @@ docker run -d -p 5000:5000 usersapp
 ### 8. Create a Launch Template for EC2:
 Create a new launch template with the following settings:
 * security groups- Allow inbound traffic on ports 22 (SSH), 80 (HTTP), and 5000 (application).
+<img width="1170" alt="security_roles" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/security_roles.png">
+
 * Specify the AMI ID, instance type (t2.micro), key pair, and the IAM role from step 7.
 * Add the following user data script to install, clone, and run the app:
 ```bash
@@ -86,22 +94,23 @@ docker run -d -p 5000:5000 usersapp
 ### 9. Set Up an Auto Scaling Group:
 * Create a new Auto Scaling Group using the launch template from step 8.
 * Configure the Auto Scaling Group with desired capacity, minimum capacity, and maximum capacity settings.
-*תמונה של הפרטים של יצירת אוטוסקאלינג
-
+<img width="1170" alt="asg_details" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/asg_details.png">
 
 ### 10. Create a Load Balancer
 * Create a new Classic Load Balancer with the following settings:
   - Configure listeners for HTTP on port 80.
   - Add security groups allowing traffic on the necessary ports.
   - Register the EC2 instances in the Auto Scaling Group with the load balancer.
-*תמונה של הגדרת לוד בלאנסר
-
+<img width="1170" alt="load_balancer_details" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/load_balancer_details.png">
 ### 11. Verify Deployment:
 * Go to the Target Group in the AWS Management Console and ensure the targets are healthy.
-*תמונה שהלפי
+<img width="1170" alt="healfi" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/healfi.png">
+
 * Find the Load Balancer DNS name in the AWS Management Console and navigate to it in your web browser to verify the application is running.
 * go to the NLB and find the NLB DNS, copy the DNS to new web browser and see that the app works.
-*תמונה של הכתובת דמס בדף האפליקציה
+
+### The app, using the load balancer DNS:
+<img width="1170" alt="load_balancer_run" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/run%20load%20balancer.png">
 
 #### Simulate Load for Testing Auto Scaling:
 
@@ -113,7 +122,9 @@ Simulate a high number of requests to trigger auto-scaling:
 ```bash
 wrk -t12 -c10000 -d100s http://<load_balancer_dns>
 ```
-*תמונה של כמה ינסטנסים
+<img width="1170" alt="load_balancer_test" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/load_balancer_test">
+<img width="1170" alt="load_balancer_instances" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/instance%20auto%20scaling.png">
+
 ### Notes
 * Ensure all AWS resources are properly secured and configured according to best practices.
 * Monitor the application and infrastructure for any issues during high load and adjust auto-scaling policies as needed.
