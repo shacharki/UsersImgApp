@@ -36,7 +36,8 @@ docker run -d -p 5000:5000 usersapp
 * (You can upload an image with public access by creating a public S3 bucket and using the code in the comments in app.py).
 
 <img width="1170" alt="image_private" src="https:https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/image_private.png">
-### If you try using the url of the image you will receive this error:
+
+If you try using the url of the image you will receive this error:
 <img width="1170" alt="user_image_private" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/user%20image%20private.png">
 
 ## Cloud Computing Setup
@@ -59,7 +60,8 @@ docker run -d -p 5000:5000 usersapp
 ### 6. Deploy the Application on EC2:
 * Follow steps 1-2 above to clone the repository and build the Docker image on the EC2 instance.
 * Use the Public IP for the EC2 instance to access the application.
-### app run on ec2
+
+app run on ec2
 <img width="1170" alt="app_ru_ec2" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/app%20run%20on%20ec2.png">
 
 ### 7. Create an IAM Role:
@@ -102,6 +104,7 @@ docker run -d -p 5000:5000 usersapp
   - Add security groups allowing traffic on the necessary ports.
   - Register the EC2 instances in the Auto Scaling Group with the load balancer.
 <img width="1170" alt="load_balancer_details" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/load_balancer_details.png">
+
 ### 11. Verify Deployment:
 * Go to the Target Group in the AWS Management Console and ensure the targets are healthy.
 <img width="1170" alt="healfi" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/healfi.png">
@@ -109,7 +112,7 @@ docker run -d -p 5000:5000 usersapp
 * Find the Load Balancer DNS name in the AWS Management Console and navigate to it in your web browser to verify the application is running.
 * go to the NLB and find the NLB DNS, copy the DNS to new web browser and see that the app works.
 
-### The app, using the load balancer DNS:
+The app, using the load balancer DNS:
 <img width="1170" alt="load_balancer_run" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/run%20load%20balancer.png">
 
 #### Simulate Load for Testing Auto Scaling:
