@@ -35,7 +35,7 @@ docker run -d -p 5000:5000 usersapp
 * Update the Flask app to use the new S3 bucket name.
 * (You can upload an image with public access by creating a public S3 bucket and using the code in the comments in app.py).
 
-<img width="1170" alt="image_private" src="https:https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/image_private.png">
+<img width="1170" alt="image_private" src="https://github.com/shacharki/UsersImgApp/blob/3d39f067232152a74dc45fa63e9a1f1a9e874d1f/image_private.png">
 
 If you try using the url of the image you will receive this error:
 <img width="1170" alt="user_image_private" src="https://github.com/shacharki/UsersImgApp/blob/dd19743ba7c4560dfbf7165033e6b4937c7f2119/user%20image%20private.png">
